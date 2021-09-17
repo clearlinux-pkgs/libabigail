@@ -1,6 +1,6 @@
-Configure miss: whether including fts.h with _FILE_OFFSET_BITS set breaks
-Configure miss: dpkg
 Configure miss: bash-completion
-Configure miss: python3 module: xdg
+Configure miss: dpkg
 Configure miss: python3 module: koji
 Configure miss: python3 module: mock
+Configure miss: python3 module: xdg
+Configure miss: whether including fts.h with _FILE_OFFSET_BITS set breaks

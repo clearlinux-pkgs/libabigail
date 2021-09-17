@@ -4,7 +4,7 @@
 #
 Name     : libabigail
 Version  : 1.8.2
-Release  : 17
+Release  : 18
 URL      : https://mirrors.kernel.org/sourceware/libabigail/libabigail-1.8.2.tar.gz
 Source0  : https://mirrors.kernel.org/sourceware/libabigail/libabigail-1.8.2.tar.gz
 Summary  : The ABI Generic Analysis and Instrumentation Library
@@ -85,12 +85,12 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1614291678
+export SOURCE_DATE_EPOCH=1631842395
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export FFLAGS="$FFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fno-lto -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CFLAGS="$CFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
 %configure --disable-static
 make  %{?_smp_mflags}  ; make man
 
@@ -102,7 +102,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1614291678
+export SOURCE_DATE_EPOCH=1631842395
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libabigail
 cp %{_builddir}/libabigail-1.8.2/COPYING %{buildroot}/usr/share/package-licenses/libabigail/f81facfd488e95a394b99c4b8ac4add46b19999d
