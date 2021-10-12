@@ -4,13 +4,14 @@
 #
 Name     : libabigail
 Version  : 2.0
-Release  : 20
+Release  : 21
 URL      : https://mirrors.kernel.org/sourceware/libabigail/libabigail-2.0.tar.gz
 Source0  : https://mirrors.kernel.org/sourceware/libabigail/libabigail-2.0.tar.gz
 Summary  : The ABI Generic Analysis and Instrumentation Library
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: libabigail-bin = %{version}-%{release}
+Requires: libabigail-filemap = %{version}-%{release}
 Requires: libabigail-lib = %{version}-%{release}
 Requires: libabigail-license = %{version}-%{release}
 Requires: libabigail-man = %{version}-%{release}
@@ -33,6 +34,7 @@ Instrumentation Library.
 Summary: bin components for the libabigail package.
 Group: Binaries
 Requires: libabigail-license = %{version}-%{release}
+Requires: libabigail-filemap = %{version}-%{release}
 
 %description bin
 bin components for the libabigail package.
@@ -50,10 +52,19 @@ Requires: libabigail = %{version}-%{release}
 dev components for the libabigail package.
 
 
+%package filemap
+Summary: filemap components for the libabigail package.
+Group: Default
+
+%description filemap
+filemap components for the libabigail package.
+
+
 %package lib
 Summary: lib components for the libabigail package.
 Group: Libraries
 Requires: libabigail-license = %{version}-%{release}
+Requires: libabigail-filemap = %{version}-%{release}
 
 %description lib
 lib components for the libabigail package.
@@ -80,33 +91,52 @@ man components for the libabigail package.
 cd %{_builddir}/libabigail-2.0
 %patch1 -p1
 %patch2 -p1
+pushd ..
+cp -a libabigail-2.0 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633386805
+export SOURCE_DATE_EPOCH=1634055678
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mno-vzeroupper -mprefer-vector-width=256 "
 %configure --disable-static
 make  %{?_smp_mflags}  ; make man
 
+unset PKG_CONFIG_PATH
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
+%configure --disable-static
+make  %{?_smp_mflags}  ; make man
+popd
 %check
 export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
+cd ../buildavx2;
+make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1633386805
+export SOURCE_DATE_EPOCH=1634055678
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libabigail
 cp %{_builddir}/libabigail-2.0/LICENSE.txt %{buildroot}/usr/share/package-licenses/libabigail/483d1c97dc79ef8741eae507897ca39cfe19da36
+pushd ../buildavx2/
+%make_install_v3
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+popd
 %make_install
 ## install_append content
 make -C doc/manuals install-man-and-info-doc DESTDIR=%{buildroot}
@@ -124,6 +154,7 @@ make -C doc/manuals install-man-and-info-doc DESTDIR=%{buildroot}
 /usr/bin/abilint
 /usr/bin/abipkgdiff
 /usr/bin/kmidiff
+/usr/share/clear/optimized-elf/bin*
 
 %files dev
 %defattr(-,root,root,-)
@@ -157,10 +188,15 @@ make -C doc/manuals install-man-and-info-doc DESTDIR=%{buildroot}
 /usr/lib64/pkgconfig/libabigail.pc
 /usr/share/aclocal/*.m4
 
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-libabigail
+
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libabigail.so.0
 /usr/lib64/libabigail.so.0.0.0
+/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
