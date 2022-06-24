@@ -6,6 +6,8 @@ Configure miss: python3 module: koji
 Configure miss: python3 module: koji
 Configure miss: python3 module: mock
 Configure miss: python3 module: mock
+Configure miss: python3 module: six
+Configure miss: python3 module: six
 Configure miss: python3 module: xdg
 Configure miss: python3 module: xdg
 Configure miss: whether including fts.h with _FILE_OFFSET_BITS set breaks
