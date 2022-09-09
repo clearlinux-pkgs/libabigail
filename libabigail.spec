@@ -4,7 +4,7 @@
 #
 Name     : libabigail
 Version  : 2.0
-Release  : 27
+Release  : 28
 URL      : https://mirrors.kernel.org/sourceware/libabigail/libabigail-2.0.tar.gz
 Source0  : https://mirrors.kernel.org/sourceware/libabigail/libabigail-2.0.tar.gz
 Summary  : The ABI Generic Analysis and Instrumentation Library
@@ -15,12 +15,12 @@ Requires: libabigail-filemap = %{version}-%{release}
 Requires: libabigail-lib = %{version}-%{release}
 Requires: libabigail-license = %{version}-%{release}
 Requires: libabigail-man = %{version}-%{release}
-BuildRequires : Sphinx
 BuildRequires : bash-completion
 BuildRequires : bash-completion-dev
 BuildRequires : doxygen
 BuildRequires : elfutils-dev
 BuildRequires : pkgconfig(libxml-2.0)
+BuildRequires : pypi-sphinx
 BuildRequires : rpm-extras
 BuildRequires : valgrind
 Patch1: 0001-Add-a-hidden-option-to-abidw-to-make-it-exit-if-it-s.patch
@@ -100,7 +100,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656045339
+export SOURCE_DATE_EPOCH=1662754776
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
 export FCFLAGS="$FFLAGS -Ofast -falign-functions=32 -fno-lto -fno-semantic-interposition -mprefer-vector-width=256 "
@@ -129,10 +129,10 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1656045339
+export SOURCE_DATE_EPOCH=1662754776
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libabigail
-cp %{_builddir}/libabigail-2.0/LICENSE.txt %{buildroot}/usr/share/package-licenses/libabigail/483d1c97dc79ef8741eae507897ca39cfe19da36
+cp %{_builddir}/libabigail-%{version}/LICENSE.txt %{buildroot}/usr/share/package-licenses/libabigail/483d1c97dc79ef8741eae507897ca39cfe19da36
 pushd ../buildavx2/
 %make_install_v3
 popd
@@ -184,6 +184,7 @@ make -C doc/manuals install-man-and-info-doc DESTDIR=%{buildroot}
 /usr/include/libabigail/abg-viz-svg.h
 /usr/include/libabigail/abg-workers.h
 /usr/include/libabigail/abg-writer.h
+/usr/lib64/glibc-hwcaps/x86-64-v3/libabigail.so
 /usr/lib64/libabigail.so
 /usr/lib64/pkgconfig/libabigail.pc
 /usr/share/aclocal/*.m4
@@ -194,7 +195,6 @@ make -C doc/manuals install-man-and-info-doc DESTDIR=%{buildroot}
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libabigail.so
 /usr/lib64/glibc-hwcaps/x86-64-v3/libabigail.so.0
 /usr/lib64/glibc-hwcaps/x86-64-v3/libabigail.so.0.0.0
 /usr/lib64/libabigail.so.0
