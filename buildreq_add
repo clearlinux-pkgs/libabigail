@@ -2,5 +2,8 @@
 # picked up automatically. One name per line, no whitespace.
 bash-completion
 bash-completion-dev
+doxygen
+elfutils-dev
+pypi-sphinx
 # for abipkgdiff (uses rpm2cpio)
 rpm-extras

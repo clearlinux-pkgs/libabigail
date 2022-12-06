@@ -14,7 +14,7 @@ Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
  1 file changed, 54 insertions(+)
 
 diff --git a/tools/abidw.cc b/tools/abidw.cc
-index f38d604..17d8476 100644
+index 01e8880..3833433 100644
 --- a/tools/abidw.cc
 +++ b/tools/abidw.cc
 @@ -13,6 +13,8 @@
@@ -26,7 +26,7 @@ index f38d604..17d8476 100644
  #include <cassert>
  #include <cstdio>
  #include <cstdlib>
-@@ -85,6 +87,7 @@ struct options
+@@ -87,6 +89,7 @@ struct options
    suppressions_type	kabi_whitelist_supprs;
    bool			display_version;
    bool			display_abixml_version;
@@ -34,7 +34,7 @@ index f38d604..17d8476 100644
    bool			check_alt_debug_info_path;
    bool			show_base_name_alt_debug_info_path;
    bool			write_architecture;
-@@ -124,6 +127,7 @@ struct options
+@@ -128,6 +131,7 @@ struct options
    options()
      : display_version(),
        display_abixml_version(),
@@ -42,7 +42,7 @@ index f38d604..17d8476 100644
        check_alt_debug_info_path(),
        show_base_name_alt_debug_info_path(),
        write_architecture(true),
-@@ -168,6 +172,17 @@ struct options
+@@ -174,6 +178,17 @@ struct options
    }
  };
  
@@ -60,7 +60,7 @@ index f38d604..17d8476 100644
  static void
  display_usage(const string& prog_name, ostream& out)
  {
-@@ -320,6 +335,20 @@ parse_command_line(int argc, char* argv[], options& opts)
+@@ -330,6 +345,20 @@ parse_command_line(int argc, char* argv[], options& opts)
  	  opts.vmlinux = argv[j];
  	  ++i;
  	}
@@ -81,7 +81,7 @@ index f38d604..17d8476 100644
        else if (!strcmp(argv[i], "--noout"))
  	opts.noout = true;
  #ifdef WITH_CTF
-@@ -536,6 +565,28 @@ load_corpus_and_write_abixml(char* argv[],
+@@ -568,6 +597,28 @@ load_corpus_and_write_abixml(char* argv[],
  {
    int exit_code = 0;
    timer t;
@@ -110,7 +110,7 @@ index f38d604..17d8476 100644
  
  #ifdef WITH_DEBUG_SELF_COMPARISON
    if (opts.debug_abidiff)
-@@ -765,12 +816,14 @@ load_corpus_and_write_abixml(char* argv[],
+@@ -780,12 +831,14 @@ load_corpus_and_write_abixml(char* argv[],
  
    if (!opts.out_file_path.empty())
      {
@@ -125,7 +125,7 @@ index f38d604..17d8476 100644
            return 1;
          }
        set_ostream(*write_ctxt, of);
-@@ -780,6 +833,7 @@ load_corpus_and_write_abixml(char* argv[],
+@@ -795,6 +848,7 @@ load_corpus_and_write_abixml(char* argv[],
        if (opts.do_log)
          emit_prefix(argv[0], cerr)
            << "emitted abixml output in: " << t << "\n";
