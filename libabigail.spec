@@ -5,7 +5,7 @@
 #
 Name     : libabigail
 Version  : 2.2
-Release  : 33
+Release  : 34
 URL      : https://mirrors.kernel.org/sourceware/libabigail/libabigail-2.2.tar.xz
 Source0  : https://mirrors.kernel.org/sourceware/libabigail/libabigail-2.2.tar.xz
 Summary  : The ABI Generic Analysis and Instrumentation Library
@@ -91,7 +91,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682992760
+export SOURCE_DATE_EPOCH=1685635782
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -120,7 +120,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1682992760
+export SOURCE_DATE_EPOCH=1685635782
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libabigail
 cp %{_builddir}/libabigail-%{version}/LICENSE.txt %{buildroot}/usr/share/package-licenses/libabigail/483d1c97dc79ef8741eae507897ca39cfe19da36 || :
@@ -154,7 +154,6 @@ make -C doc/manuals install-man-and-info-doc DESTDIR=%{buildroot}
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libabigail.so
 /usr/include/libabigail/abg-comp-filter.h
 /usr/include/libabigail/abg-comparison.h
 /usr/include/libabigail/abg-config.h
@@ -190,7 +189,6 @@ make -C doc/manuals install-man-and-info-doc DESTDIR=%{buildroot}
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libabigail.so.1
 /V3/usr/lib64/libabigail.so.1.0.0
 /usr/lib64/libabigail.so.1
 /usr/lib64/libabigail.so.1.0.0
