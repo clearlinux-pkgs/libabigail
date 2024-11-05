@@ -14,8 +14,6 @@ Configure miss: python3 module: git
 Configure miss: python3 module: git
 Configure miss: python3 module: koji
 Configure miss: python3 module: koji
-Configure miss: python3 module: libarchive
-Configure miss: python3 module: libarchive
 Configure miss: python3 module: six
 Configure miss: python3 module: six
 Configure miss: python3 module: xdg
