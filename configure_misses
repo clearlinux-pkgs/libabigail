@@ -18,7 +18,61 @@ Configure miss: python3 module: six
 Configure miss: python3 module: six
 Configure miss: python3 module: xdg
 Configure miss: python3 module: xdg
+Configure miss: whether DW_LANG_Ada2005 is declared
+Configure miss: whether DW_LANG_Ada2005 is declared
+Configure miss: whether DW_LANG_Ada2012 is declared
+Configure miss: whether DW_LANG_Ada2012 is declared
+Configure miss: whether DW_LANG_Assembly is declared
+Configure miss: whether DW_LANG_Assembly is declared
+Configure miss: whether DW_LANG_C17 is declared
+Configure miss: whether DW_LANG_C17 is declared
+Configure miss: whether DW_LANG_C23 is declared
+Configure miss: whether DW_LANG_C23 is declared
+Configure miss: whether DW_LANG_CPP_for_OpenCL is declared
+Configure miss: whether DW_LANG_CPP_for_OpenCL is declared
+Configure miss: whether DW_LANG_C_plus_plus_17 is declared
+Configure miss: whether DW_LANG_C_plus_plus_17 is declared
+Configure miss: whether DW_LANG_C_plus_plus_20 is declared
+Configure miss: whether DW_LANG_C_plus_plus_20 is declared
+Configure miss: whether DW_LANG_C_plus_plus_23 is declared
+Configure miss: whether DW_LANG_C_plus_plus_23 is declared
+Configure miss: whether DW_LANG_C_sharp is declared
+Configure miss: whether DW_LANG_C_sharp is declared
+Configure miss: whether DW_LANG_Crystal is declared
+Configure miss: whether DW_LANG_Crystal is declared
+Configure miss: whether DW_LANG_Fortran18 is declared
+Configure miss: whether DW_LANG_Fortran18 is declared
+Configure miss: whether DW_LANG_Fortran23 is declared
+Configure miss: whether DW_LANG_Fortran23 is declared
+Configure miss: whether DW_LANG_GLSL is declared
+Configure miss: whether DW_LANG_GLSL is declared
+Configure miss: whether DW_LANG_GLSL_ES is declared
+Configure miss: whether DW_LANG_GLSL_ES is declared
+Configure miss: whether DW_LANG_HIP is declared
+Configure miss: whether DW_LANG_HIP is declared
+Configure miss: whether DW_LANG_HLSL is declared
+Configure miss: whether DW_LANG_HLSL is declared
+Configure miss: whether DW_LANG_Hylo is declared
+Configure miss: whether DW_LANG_Hylo is declared
+Configure miss: whether DW_LANG_Kotlin is declared
+Configure miss: whether DW_LANG_Kotlin is declared
+Configure miss: whether DW_LANG_Metal is declared
+Configure miss: whether DW_LANG_Metal is declared
+Configure miss: whether DW_LANG_Mojo is declared
+Configure miss: whether DW_LANG_Mojo is declared
+Configure miss: whether DW_LANG_Move is declared
+Configure miss: whether DW_LANG_Move is declared
+Configure miss: whether DW_LANG_Odin is declared
+Configure miss: whether DW_LANG_Odin is declared
+Configure miss: whether DW_LANG_OpenCL_CPP is declared
+Configure miss: whether DW_LANG_OpenCL_CPP is declared
+Configure miss: whether DW_LANG_P4 is declared
+Configure miss: whether DW_LANG_P4 is declared
+Configure miss: whether DW_LANG_Ruby is declared
+Configure miss: whether DW_LANG_Ruby is declared
+Configure miss: whether DW_LANG_SYCL is declared
+Configure miss: whether DW_LANG_SYCL is declared
+Configure miss: whether DW_LANG_Zig is declared
+Configure miss: whether DW_LANG_Zig is declared
 Configure miss: whether including fts.h with _FILE_OFFSET_BITS set breaks
 Configure miss: whether including fts.h with _FILE_OFFSET_BITS set breaks
-Configure miss: x86_64-generic-linux-gnu-file
-Configure miss: x86_64-generic-linux-gnu-file
